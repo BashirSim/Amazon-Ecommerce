@@ -1,5 +1,7 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
+
+// This style is required from react-responsive-carosel and its taken from the offical website
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Banner = () => {
