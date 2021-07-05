@@ -68,7 +68,7 @@ const CheckoutProduct = ({
           </div>
         )}
       </div>
-      {/* Right add/remove buttons */}
+      {/*  Right add/remove buttons */}
 
       <div className="flex flex-col space-y-2 my=auto justify-self-end">
         <button onClick={addItemToBasket} className="button">
