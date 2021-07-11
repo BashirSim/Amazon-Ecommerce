@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { StarIcon } from "@heroicons/react/solid";
+import { StarIcon, CheckIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
@@ -15,6 +15,7 @@ const Product = ({ id, title, price, description, category, image }) => {
   );
 
   const [hasPrime] = useState(Math.random() < 0.5);
+  const [added, setAdded] = useState(false);
 
   const addItemToBasket = () => {
     const product = {
@@ -30,6 +31,10 @@ const Product = ({ id, title, price, description, category, image }) => {
 
     // Sending the product as an action to the REDUX store... the basket slice
     dispatch(addToBasket(product));
+  };
+
+  const addedToBasket = () => {
+    setAdded(true);
   };
 
   return (
@@ -58,15 +63,30 @@ const Product = ({ id, title, price, description, category, image }) => {
         <Currency quantity={price} />
       </div>
 
-      {hasPrime && (
-        <div className=" flex items-center space-x-2 -mt-5">
-          <img className="w-12" src="https://links.papareact.com/fdw" alt="" />
-          <p className="text-xs text-gray-500">Free Next-day Delivery</p>
-        </div>
-      )}
+      <div
+        className={`flex items-center space-x-2 -mt-5 ${
+          hasPrime ? "" : "invisible"
+        }`}
+      >
+        <img className="w-12" src="https://links.papareact.com/fdw" alt="" />
+        <p className="text-xs text-gray-500">Free Next-day Delivery</p>
+      </div>
+
+      <div
+        className={`flex text-green-700 mt-auto ${added ? "" : "invisible"}`}
+      >
+        <CheckIcon className=" h-5 mr-1 pt-.5" />
+        <p className="text-xs ">Added to Basket</p>
+      </div>
 
       {/* We have created a custom class for the button at ../styles/global.css file */}
-      <button onClick={addItemToBasket} className="mt-auto button">
+      <button
+        onClick={() => {
+          addItemToBasket();
+          addedToBasket();
+        }}
+        className="button"
+      >
         Add to Basket
       </button>
     </div>
