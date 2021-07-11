@@ -23,22 +23,22 @@ const Header = () => {
   // console.log(session);
   const router = useRouter();
   const items = useSelector(selectItems);
-  const [country, setCountry] = useState("Syria");
+  // const [country, setCountry] = useState("Syria");
 
-  const getCountry = () => {
-    axios
-      .get("https://ipapi.co/json/")
-      .then((response) => {
-        let data = response.data;
-        setCountry({
-          countryName: data.country_name,
-        });
-        console.log(country);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const getCountry = () => {
+  //   axios
+  //     .get("https://ipapi.co/json/")
+  //     .then((response) => {
+  //       let data = response.data;
+  //       setCountry({
+  //         countryName: data.country_name,
+  //       });
+  //       console.log(country);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <header>
@@ -56,7 +56,7 @@ const Header = () => {
         </div>
 
         <div
-          onClick={getCountry}
+          // onClick={getCountry}
           className="hidden sm:flex text-white  items-center text-xs mr-6 whitespace-nowrap link"
         >
           <LocationMarkerIcon className="h-5" />
