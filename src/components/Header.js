@@ -25,8 +25,8 @@ const Header = () => {
   const items = useSelector(selectItems);
   const [country, setCountry] = useState("Syria");
 
-  const getGeoInfo = () => {
-    axios
+  const getGeoInfo = async () => {
+    await axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
