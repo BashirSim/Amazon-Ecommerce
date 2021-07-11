@@ -4,11 +4,14 @@ import {
   MenuIcon,
   SearchIcon,
   ShoppingCartIcon,
+  LocationMarkerIcon,
 } from "@heroicons/react/outline";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
+import { useState } from "react/cjs/react.development";
+import axios from "axios";
 
 // We're using "Image" from nextJs b/c it optimizes the image
 // by compressing it and it uses webe format. You must whitelist
@@ -20,6 +23,22 @@ const Header = () => {
   // console.log(session);
   const router = useRouter();
   const items = useSelector(selectItems);
+  const [country, setCountry] = useState("Syria");
+
+  const getCountry = () => {
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        setCountry({
+          countryName: data.country_name,
+        });
+        console.log(country);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <header>
@@ -34,6 +53,17 @@ const Header = () => {
             objectFit="contain"
             className="cursor-pointer"
           />
+        </div>
+
+        <div
+          onClick={getCountry}
+          className="hidden sm:flex text-white  items-center text-xs mr-6 whitespace-nowrap link"
+        >
+          <LocationMarkerIcon className="h-5" />
+          <div className="ml-2">
+            <p>Deliver to</p>
+            <p className="font-extrabold md:text-sm">Saudi Arabia</p>
+          </div>
         </div>
 
         {/* Search */}
