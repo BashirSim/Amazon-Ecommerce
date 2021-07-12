@@ -10,8 +10,6 @@ import { signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
-import { useState } from "react/cjs/react.development";
-import axios from "axios";
 
 // We're using "Image" from nextJs b/c it optimizes the image
 // by compressing it and it uses webe format. You must whitelist
@@ -23,23 +21,9 @@ const Header = ({ country }) => {
   // console.log(session);
   const router = useRouter();
   const items = useSelector(selectItems);
-  // const [country, setCountry] = useState("Syria");
+  // console.log(country);
+  // console.log(location.country_flag);
 
-  // const getGeoInfo = async () => {
-  //   await axios
-  //     .get("https://ipapi.co/json/")
-  //     .then((response) => {
-  //       let data = response.data;
-  //       // console.log(data.country_name);
-  //       setCountry(data.country_name);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // getGeoInfo();
-  // console.log(country.country_name);
   return (
     <header>
       {/* Top Nav */}
@@ -74,6 +58,12 @@ const Header = ({ country }) => {
 
         {/* Right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
+          <Image
+            className="hidden sm:flex"
+            width={30}
+            height={20}
+            src={country?.location.country_flag}
+          />
           {/* We have created a custom class for the link at ../styles/global.css file */}
           <div onClick={!session ? signIn : signOut} className="link  ">
             <p className>

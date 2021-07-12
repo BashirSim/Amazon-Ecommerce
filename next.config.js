@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["links.papareact.com", "fakestoreapi.com", "api.ipstack.com"],
+    domains: ["links.papareact.com", "fakestoreapi.com", "assets.ipstack.com"],
   },
 
   env: {
