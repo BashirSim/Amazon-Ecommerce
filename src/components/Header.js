@@ -43,7 +43,7 @@ const Header = ({ country }) => {
           <LocationMarkerIcon className="h-5" />
           <div className="ml-2">
             <p>Deliver to</p>
-            <p className="font-extrabold md:text-sm">{country.country_name}</p>
+            <p className="font-extrabold md:text-sm">{country?.country_name}</p>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const Header = ({ country }) => {
             className="hidden sm:flex"
             width={30}
             height={20}
-            src={country.location.country_flag}
+            src={country?.location.country_flag}
           />
           {/* We have created a custom class for the link at ../styles/global.css file */}
           <div onClick={!session ? signIn : signOut} className="link  ">

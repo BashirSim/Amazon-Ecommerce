@@ -4,7 +4,7 @@ import Banner from "../components/Banner";
 import ProductFeed from "../components/ProductFeed";
 import { getSession } from "next-auth/client";
 
-const api_access_key = "d9700cf5639488937d4df5309b7fd158";
+const ipInfo = process.env.api_access_key;
 
 export default function Home({ products, country }) {
   return (
@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
     (res) => res.json()
   );
   const country = await fetch(
-    `http://api.ipstack.com/check?access_key=${api_access_key}&fields=country_name,location.country_flag`
+    `http://api.ipstack.com/check?access_key=${ipInfo}&fields=country_name,location.country_flag`
   ).then((response) => response.json());
 
   return {
