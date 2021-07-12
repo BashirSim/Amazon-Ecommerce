@@ -59,7 +59,7 @@ const Header = ({ country }) => {
           <LocationMarkerIcon className="h-5" />
           <div className="ml-2">
             <p>Deliver to</p>
-            <p className="font-extrabold md:text-sm">{country.country_name}</p>
+            <p className="font-extrabold md:text-sm">{country?.country_name}</p>
           </div>
         </div>
 
