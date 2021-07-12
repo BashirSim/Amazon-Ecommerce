@@ -18,7 +18,7 @@ import axios from "axios";
 // the domains that are you using the images from by creating a new file
 // called next.config.js
 
-const Header = () => {
+const Header = ({ country }) => {
   const [session] = useSession();
   // console.log(session);
   const router = useRouter();
@@ -39,7 +39,7 @@ const Header = () => {
   // };
 
   // getGeoInfo();
-
+  // console.log(country.country_name);
   return (
     <header>
       {/* Top Nav */}
@@ -59,7 +59,7 @@ const Header = () => {
           <LocationMarkerIcon className="h-5" />
           <div className="ml-2">
             <p>Deliver to</p>
-            <p className="font-extrabold md:text-sm">test</p>
+            <p className="font-extrabold md:text-sm">{country.country_name}</p>
           </div>
         </div>
 

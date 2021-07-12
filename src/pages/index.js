@@ -4,13 +4,15 @@ import Banner from "../components/Banner";
 import ProductFeed from "../components/ProductFeed";
 import { getSession } from "next-auth/client";
 
-export default function Home({ products }) {
+const api_access_key = "d9700cf5639488937d4df5309b7fd158";
+
+export default function Home({ products, country }) {
   return (
     <div className="bg-gray-100">
       <Head>
         <title>Amazon 2.0</title>
       </Head>
-      <Header />
+      <Header country={country} />
       <main className="max-w-screen-2xl mx-auto">
         {/* Banner */}
         <Banner />
@@ -29,11 +31,15 @@ export async function getServerSideProps(context) {
   const products = await fetch("https://fakestoreapi.com/products").then(
     (res) => res.json()
   );
+  const country = await fetch(
+    `http://api.ipstack.com/check?access_key=${api_access_key}`
+  ).then((response) => response.json());
 
   return {
     props: {
       products,
       session,
+      country,
     },
   };
 }
