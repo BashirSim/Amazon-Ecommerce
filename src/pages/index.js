@@ -32,13 +32,13 @@ export async function getServerSideProps(context) {
     (res) => res.json()
   );
   const country = await fetch(
-    `http://api.ipstack.com/check?access_key=${api_access_key}`
+    `http://api.ipstack.com/check?access_key=${api_access_key}&fields=country_name,location.country_flag`
   ).then((response) => response.json());
 
   return {
     props: {
-      products,
       session,
+      products,
       country,
     },
   };

@@ -62,7 +62,7 @@ const Header = ({ country }) => {
             className="hidden sm:flex"
             width={30}
             height={20}
-            src={country.location.country_flag}
+            src={country?.location.country_flag}
           />
           {/* We have created a custom class for the link at ../styles/global.css file */}
           <div onClick={!session ? signIn : signOut} className="link  ">
