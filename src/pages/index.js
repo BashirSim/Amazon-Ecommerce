@@ -32,7 +32,8 @@ export async function getServerSideProps(context) {
     (res) => res.json()
   );
   const country = await fetch(
-    `http://api.ipstack.com/check?access_key=${ipInfo}&fields=country_name,location.country_flag`
+    `http://ip-api.com/json/`
+    // `http://api.ipstack.com/check?access_key=${ipInfo}&fields=country_name,location.country_flag`
   ).then((response) => response.json());
 
   return {
