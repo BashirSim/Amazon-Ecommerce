@@ -36,6 +36,7 @@ export async function getServerSideProps(context) {
     // `http://api.ipstack.com/check?access_key=${ipInfo}&fields=country_name,location.country_flag`
   ).then((response) => response.json());
 
+  console.log(country);
   return {
     props: {
       session,
